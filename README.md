@@ -9,6 +9,7 @@
 * Ask the equipament ips to connect
 * Validate wrong syntax of missing octets on the ip address
 * Ask the equipament commands to be executed
+* Remove the blank lines in the commands and ips file
 * Ask your credentials for automatically login
 * It does use `expect` to send the commands, in case of long outputs, its recommend to increase the sleep time in:
 ```
