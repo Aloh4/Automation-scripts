@@ -1,5 +1,5 @@
 #!/bin/bash
-# Autor: Douglas Silveira Baptista - N3
+# Autor: Douglas Silveira Baptista
 # Script para coleta massiva
 #
 
