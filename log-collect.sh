@@ -39,7 +39,6 @@ do
         echo -e "4) OLT"
         echo -e "0) Sair\n"
         read -n 1 -p "Digite a opção desejada: "
-
 done
 
 case ${REPLY} in
@@ -50,17 +49,17 @@ case ${REPLY} in
                 echo -e "\nAinda não está pronto\n"
                 ;;
         2)
-				clear
-				tput setab 1
-				echo -e "--------------------## Router Cisco - Comandos ##-----------------\n"
-				tput setab 0
-				echo -e "Insira os comandos, 1 por linha, pressione CTRL + D para terminar"
-				echo -e "Não é necessário inserir terminal length 0\n"
-				
-				# Insere os comandos em comandos.txt
+		clear
+		tput setab 1
+		echo -e "--------------------## Router Cisco - Comandos ##-----------------\n"
+		tput setab 0
+		echo -e "Insira os comandos, 1 por linha, pressione CTRL + D para terminar"
+		echo -e "Não é necessário inserir terminal length 0\n"
+		
+		# Insere os comandos em comandos.txt
                 while read -p "Insira os comandos: "
-				do
-					echo "${REPLY}" >> comandos.txt
+		do
+			echo "${REPLY}" >> comandos.txt
                 done
 
                 # Insere os IPs em ips.txt
@@ -69,25 +68,25 @@ case ${REPLY} in
                 tput setab 0
                 while read -p "Insira os IPs: "
                 do
-                    sed -i -r "/^$/d" ips.txt
-                    echo "${REPLY}" >> ips.txt
-                    if grep -Evq '^(([0-9]{1,3}\.){3}[0-9]{1,3})$' ips.txt
-						then
-								echo -e "\n\nHá endereços de IP incorretos, digite todos novamente"
-								echo -e "Insira os comandos, 1 por linha, pressione CTRL + D para terminar\n"
-								echo "" > ips.txt
+                	sed -i -r "/^$/d" ips.txt
+                	echo "${REPLY}" >> ips.txt
+                	if grep -Evq '^(([0-9]{1,3}\.){3}[0-9]{1,3})$' ips.txt
+			then
+				echo -e "\n\nHá endereços de IP incorretos, digite todos novamente"
+				echo -e "Insira os comandos, 1 por linha, pressione CTRL + D para terminar\n"
+				echo "" > ips.txt
                         fi
-					done
+		done
 
 
-                 # Remove linhas em branco de comandos.txt e ips.txt
-                 sed -i -r "/^$/d" comandos.txt
-                 sed -i -r "/^$/d" ips.txt
-                 # Credenciais para Login
-				 echo -e "\n\n--------------------## INSERE CREDENCIAIS ##--------------\n"
-                 read -p "Digite seu N: " user
-                 read -s -p "Digite sua senha: " pass
-                 echo -e "\n"
+                # Remove linhas em branco de comandos.txt e ips.txt
+                sed -i -r "/^$/d" comandos.txt
+                sed -i -r "/^$/d" ips.txt
+                # Credenciais para Login
+		echo -e "\n\n--------------------## INSERE CREDENCIAIS ##--------------\n"
+                read -p "Digite seu N: " user
+                read -s -p "Digite sua senha: " pass
+                echo -e "\n"
 
 
 /usr/bin/expect << label1
@@ -113,18 +112,17 @@ send "$pass\n"
 expect "*#"
 send "terminal length 0\n"
 
-
-        foreach comando \$comandos {
-        expect "*#"
-        send "\$comando\n"
-        sleep 3
-        }
-        expect "*#"
-        send "quit\n"
-        }
-        }
-        }
-        exit
+foreach comando \$comandos {
+expect "*#"
+send "\$comando\n"
+sleep 3
+}
+expect "*#"
+send "quit\n"
+}
+}
+}
+exit
 label1
 
 echo -e "\n"
@@ -132,17 +130,17 @@ echo -e "Logs coletados e salvos em $(pwd)/coleta.log.$data_atual\n"
 
                 ;;
         3)
-				clear
-				tput setab 1
-				echo -e "--------------------## Router Huawei - Comandos ##-----------------\n"
-				tput setab 0
-				echo -e "Insira os comandos, 1 por linha, pressione CTRL + D para terminar"
-				echo -e "Não é necessário inserir screen-length 0 temp\n"
+		clear
+		tput setab 1
+		echo -e "--------------------## Router Huawei - Comandos ##-----------------\n"
+		tput setab 0
+		echo -e "Insira os comandos, 1 por linha, pressione CTRL + D para terminar"
+		echo -e "Não é necessário inserir screen-length 0 temp\n"
 				
-				# Insere os comandos em comandos.txt
+		# Insere os comandos em comandos.txt
                 while read -p "Insira os comandos: "
-				do
-					echo "${REPLY}" >> comandos.txt
+		do
+			echo "${REPLY}" >> comandos.txt
                 done
 
                 # Insere os IPs em ips.txt
@@ -150,23 +148,23 @@ echo -e "Logs coletados e salvos em $(pwd)/coleta.log.$data_atual\n"
                 echo -e "\n\n--------------------## INSERE IPS ##----------------------\n"
                 tput setab 0
                 while read -p "Insira os IPs: "
-                do
-                    sed -i -r "/^$/d" ips.txt
-                    echo "${REPLY}" >> ips.txt
-                    if grep -Evq '^(([0-9]{1,3}\.){3}[0-9]{1,3})$' ips.txt
-						then
-								echo -e "\n\nHá endereços de IP incorretos, digite todos novamente"
-								echo -e "Insira os comandos, 1 por linha, pressione CTRL + D para terminar\n"
-								echo "" > ips.txt
+               	do
+                sed -i -r "/^$/d" ips.txt
+                	echo "${REPLY}" >> ips.txt
+                    	if grep -Evq '^(([0-9]{1,3}\.){3}[0-9]{1,3})$' ips.txt
+			then
+				echo -e "\n\nHá endereços de IP incorretos, digite todos novamente"
+				echo -e "Insira os comandos, 1 por linha, pressione CTRL + D para terminar\n"
+				echo "" > ips.txt
                         fi
-					done
+		done
 
 
                  # Remove linhas em branco de comandos.txt e ips.txt
                  sed -i -r "/^$/d" comandos.txt
                  sed -i -r "/^$/d" ips.txt
                  # Credenciais para Login
-				 echo -e "\n\n--------------------## INSERE CREDENCIAIS ##--------------\n"
+		 echo -e "\n\n--------------------## INSERE CREDENCIAIS ##--------------\n"
                  read -p "Digite seu N: " user
                  read -s -p "Digite sua senha: " pass
                  echo -e "\n"
@@ -195,34 +193,34 @@ expect "*>"
 send "screen-length 0 temp\n"
 
 
-        foreach comando \$comandos {
-        expect "*>"
-        send "\$comando\n"
-        sleep 3
-        }
-        expect "*>"
-        send "quit\n"
-        }
-        }
-        }
-        exit
+foreach comando \$comandos {
+expect "*>"
+send "\$comando\n"
+sleep 3
+}
+expect "*>"
+send "quit\n"
+}
+}
+}
+exit
 label1
 echo -e "\n"
 echo -e "Logs coletados e salvos em $(pwd)/coleta.log.$data_atual\n"
 
                 ;;
         4)
-				clear
-				tput setab 1
-				echo -e "--------------------## OLT Huawei - Comandos ##-----------------\n"
-				tput setab 0
-				echo -e "Insira os comandos, 1 por linha, pressione CTRL + D para terminar"
-				echo -e "Não é necessário enable e scroll\n"
+		clear
+		tput setab 1
+		echo -e "--------------------## OLT Huawei - Comandos ##-----------------\n"
+		tput setab 0
+		echo -e "Insira os comandos, 1 por linha, pressione CTRL + D para terminar"
+		echo -e "Não é necessário enable e scroll\n"
 				
-				# Insere os comandos em comandos.txt
+		# Insere os comandos em comandos.txt
                 while read -p "Insira os comandos: "
-				do
-					echo "${REPLY}" >> comandos.txt
+		do
+			echo "${REPLY}" >> comandos.txt
                 done
 
                 # Insere os IPs em ips.txt
@@ -231,22 +229,22 @@ echo -e "Logs coletados e salvos em $(pwd)/coleta.log.$data_atual\n"
                 tput setab 0
                 while read -p "Insira os IPs: "
                 do
-                    sed -i -r "/^$/d" ips.txt
-                    echo "${REPLY}" >> ips.txt
-                    if grep -Evq '^(([0-9]{1,3}\.){3}[0-9]{1,3})$' ips.txt
-						then
-								echo -e "\n\nHá endereços de IP incorretos, digite todos novamente"
-								echo -e "Insira os comandos, 1 por linha, pressione CTRL + D para terminar\n"
-								echo "" > ips.txt
+                	sed -i -r "/^$/d" ips.txt
+                    	echo "${REPLY}" >> ips.txt
+                    	if grep -Evq '^(([0-9]{1,3}\.){3}[0-9]{1,3})$' ips.txt
+		  	then
+				echo -e "\n\nHá endereços de IP incorretos, digite todos novamente"
+				echo -e "Insira os comandos, 1 por linha, pressione CTRL + D para terminar\n"
+				echo "" > ips.txt
                         fi
-					done
+		done
 
 
                  # Remove linhas em branco de comandos.txt e ips.txt
                  sed -i -r "/^$/d" comandos.txt
                  sed -i -r "/^$/d" ips.txt
                  # Credenciais para Login
-				 echo -e "\n\n--------------------## INSERE CREDENCIAIS ##--------------\n"
+		 echo -e "\n\n--------------------## INSERE CREDENCIAIS ##--------------\n"
                  read -p "Digite seu N: " user
                  read -s -p "Digite sua senha: " pass
                  echo -e "\n"
@@ -275,17 +273,17 @@ send "scroll\n"
 expect "*>"
 send "enable\n"
 
-        foreach comando \$comandos {
-        expect "*#"
-        send "\$comando\n"
-        sleep 3
-        }
-        expect "*#"
-        send "quit\n"
-        }
-        }
-        }
-        exit
+foreach comando \$comandos {
+expect "*#"
+send "\$comando\n"
+sleep 3
+}
+expect "*#"
+send "quit\n"
+}
+}
+}
+exit
 label1
 
 echo -e "\n"
@@ -301,10 +299,3 @@ exit
 # Futuro:
 # Adicionar validações de instalacao para expect / tput
 # Futuro: Juniper e extreme
-
-
-
-
-
-
-
