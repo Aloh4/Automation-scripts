@@ -299,7 +299,7 @@ esac
 exit
 
 # Futuro:
-# Adicionar validações de instalacao para expect / tput / algoritmo ssh
+# Adicionar validações de instalacao para expect / tput
 # Futuro: Juniper e extreme
 
 
